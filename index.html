@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAAAGH! Scoreboard</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.cdnfonts.com/css/cursed-timer-ulil" rel="stylesheet">
+</head>
+<body>
+    <!-- Basketball court decorations -->
+    <div class="three-point-line left"></div>
+    <div class="three-point-line right"></div>
+    
+    <h1 class="title">WAAAGH! SLAMBALL</h1>
+    
+    <div class="container">
+        <div class="column">
+            <h3>DA SLAMMAZ</h3>
+            <div class="score-container">
+                <div class="score" id="home-score">0</div>
+            </div>
+            <div class="button-group">
+                <button onclick="addScore('home', 1)">+1</button>
+                <button onclick="addScore('home', 2)">+2</button>
+                <button onclick="addScore('home', 3)">+3</button>
+            </div>
+            <button class="special-button" onclick="krump('home')">KRUMP 'EM!</button>
+            <div class="waaagh-meter">
+                <div class="waaagh-fill" id="home-waaagh"></div>
+            </div>
+            <div class="ork-text" id="home-text"></div>
+            <div class="stats" id="home-stats">Krumps: 0 | Teef: 0</div>
+        </div>
+        
+        <div class="column">
+            <h3>DA DUNKAZ</h3>
+            <div class="score-container">
+                <div class="score" id="guest-score">0</div>
+            </div>
+            <div class="button-group">
+                <button onclick="addScore('guest', 1)">+1</button>
+                <button onclick="addScore('guest', 2)">+2</button>
+                <button onclick="addScore('guest', 3)">+3</button>
+            </div>
+            <button class="special-button" onclick="krump('guest')">KRUMP 'EM!</button>
+            <div class="waaagh-meter">
+                <div class="waaagh-fill" id="guest-waaagh"></div>
+            </div>
+            <div class="ork-text" id="guest-text"></div>
+            <div class="stats" id="guest-stats">Krumps: 0 | Teef: 0</div>
+        </div>
+    </div>
+    
+    <div class="reset-section">
+        <button class="special-button reset-button" onclick="resetGame()">NEW WAAAGH!</button>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+/* WAAAGH! SLAMBALL STYLES - DUNK FOR GORK AND MORK! */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a2e0d;
+    background-image: url('/images/waagh-slamball.jpg');
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial Black', sans-serif;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(2px);
+}
+
+/* Dark overlay for better text readability */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+/* Main Title */
+.title {
+    font-size: 60px;
+    color: #7fb069;
+    text-shadow: 3px 3px 0 #2d5016, 
+                 6px 6px 0 #1a2e0d,
+                 9px 9px 20px rgba(0, 0, 0, 0.8),
+                 0 0 40px rgba(127, 176, 105, 0.6);
+    margin-bottom: 30px;
+    animation: pulse 2s infinite;
+    letter-spacing: 5px;
+    position: relative;
+    z-index: 10;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Container and Layout */
+.container {
+    display: flex;
+    gap: 80px;
+    width: 85px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.column {
+    text-align: center;
+    position: relative;
+}
+
+.column h3 {
+    font-size: 35px;
+    color: #7fb069;
+    text-shadow: 2px 2px 0 #2d5016,
+                 4px 4px 0 #1a2e0d,
+                 6px 6px 10px rgba(0, 0, 0, 0.9);
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+/* Score Display */
+.score-container {
+    background: linear-gradient(135deg, #2d5016 0%, #1a2e0d 100%);
+    border: 4px solid #7fb069;
+    border-radius: 10px;
+    width: 180px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 30px rgba(127, 176, 105, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.7),
+                0 0 50px rgba(0, 0, 0, 0.8);
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.score-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(127, 176, 105, 0.1), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%); }
+    100% { transform: translateX(100%) translateY(100%); }
+}
+
+.score {
+    text-shadow: 0 0 20px rgba(164, 214, 94, 0.8),
+                 0 0 40px rgba(127, 176, 105, 0.4),
+                 2px 2px 4px rgba(0, 0, 0, 0.9);
+    font-family: "Cursed Timer ULiL", monospace;
+    font-size: 80px;
+    color: #a4d65e;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s;
+}
+
+.score.flash {
+    animation: scoreFlash 0.5s;
+}
+
+@keyframes scoreFlash {
+    0% { transform: scale(1); color: #a4d65e; }
+    50% { transform: scale(1.3); color: #ffff00; text-shadow: 0 0 30px #ffff00; }
+    100% { transform: scale(1); color: #a4d65e; }
+}
+
+/* Buttons */
+button {
+    background: linear-gradient(135deg, #4a7c4e 0%, #2d5016 100%);
+    color: #a4d65e;
+    border: 2px solid #7fb069;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 4px 0 #1a2e0d,
+                0 0 20px rgba(0, 0, 0, 0.7);
+    position: relative;
+    cursor: pointer;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #5a8c5e 0%, #3d6026 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #1a2e0d,
+                0 0 30px rgba(127, 176, 105, 0.5);
+    color: #c4f67e;
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #1a2e0d,
+                0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+/* Special Buttons */
+.special-button {
+    background: linear-gradient(135deg, #8b1010 0%, #4a0808 100%);
+    border-color: #ff3333;
+    color: #ff6666;
+    margin-top: 20px;
+    width: auto;
+    align-content: center;
+    padding: 12px 20px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    animation: glow 2s infinite;
+    box-shadow: 0 4px 0 #4a0808, 0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+@keyframes glow {
+    0%, 100% { 
+        box-shadow: 0 4px 0 #4a0808, 
+                    0 0 20px rgba(255, 51, 51, 0.5),
+                    0 0 30px rgba(0, 0, 0, 0.9);
+    }
+    50% { 
+        box-shadow: 0 4px 0 #4a0808, 
+                    0 0 30px rgba(255, 51, 51, 0.8),
+                    0 0 40px rgba(0, 0, 0, 0.9);
+    }
+}
+
+.special-button:hover {
+    background: linear-gradient(135deg, #ab2020 0%, #6a1818 100%);
+    box-shadow: 0 6px 0 #4a0808,
+                0 0 40px rgba(255, 51, 51, 0.6);
+    color: #ff9999;
+}
+
+.reset-button {
+    background: linear-gradient(135deg, #4a7c4e 0%, #2d5016 100%);
+    border-color: #7fb069;
+    color: #a4d65e;
+    box-shadow: 0 4px 0 #1a2e0d,
+                0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+/* WAAAGH! Meter */
+.waaagh-meter {
+    margin-top: 20px;
+    width: 180px;
+    height: 30px;
+    border: 2px solid #7fb069;
+    border-radius: 15px;
+    background: rgba(26, 46, 13, 0.9);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.waaagh-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4a7c4e, #7fb069, #a4d65e);
+    width: 0%;
+    transition: width 0.5s;
+    position: relative;
+}
+
+.waaagh-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: waaaghShine 2s infinite;
+}
+
+@keyframes waaaghShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Text Elements */
+.ork-text {
+    color: #a4d65e;
+    font-size: 30px;
+    margin-top: 10px;
+    height: 24px;
+    font-style: italic;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9),
+                 0 0 10px rgba(127, 176, 105, 0.5);
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stats {
+    color: #a4d65e;
+    font-size: 12px;
+    margin-top: 10px;
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Effects */
+.explosion {
+    position: fixed;
+    pointer-events: none;
+    font-size: 50px;
+    font-weight: bold;
+    color: #ffff00;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: explode 1.25s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2) rotate(360deg) translateY(-100px);
+        opacity: 0;
+    }
+}
+
+.dakka {
+    position: fixed;
+    color: #ff6666;
+    font-size: 20px;
+    font-weight: bold;
+    pointer-events: none;
+    animation: dakkaFly 0.5s linear forwards;
+    z-index: 999;
+}
+
+@keyframes dakkaFly {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100px) translateY(-50px);
+        opacity: 0;
+    }
+}
+
+/* Utility Animations */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+@keyframes screenShake {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-10px, -10px); }
+    20% { transform: translate(10px, -10px); }
+    30% { transform: translate(-10px, 10px); }
+    40% { transform: translate(10px, 10px); }
+    50% { transform: translate(-10px, -10px); }
+    60% { transform: translate(10px, -10px); }
+    70% { transform: translate(-10px, 10px); }
+    80% { transform: translate(10px, 10px); }
+    90% { transform: translate(-10px, -10px); }
+}
+
+.reset-section {
+    margin-top: 40px;
+    position: relative;
+}
