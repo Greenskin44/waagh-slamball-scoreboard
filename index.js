@@ -96,7 +96,7 @@ function addScore(team, points) {
 }
 
 // KRUMP special ability
-function krump(team) {
+function krump(team, evt) {
     if (waaaghLevels[team] >= 50) {
         // Calculate bonus points
         const bonusPoints = Math.floor(Math.random() * 6) + 5;
@@ -134,7 +134,7 @@ function krump(team) {
             "SHATTERED DA BACKBOARD!"
         ];
         phraseEl.textContent = epicMessages[Math.floor(Math.random() * epicMessages.length)];
-        setTimeout(() => phraseEl.textContent = '', 8000); // Increased from 4000ms to 8000ms
+        setTimeout(() => phraseEl.textContent = '', 8000);
         
         updateStats(team);
         shakeScreen();
@@ -146,8 +146,10 @@ function krump(team) {
         setTimeout(() => phraseEl.textContent = '', 4000); // Increased from 2000ms to 4000ms
         
         // Shake the krump button to show it's not ready
-        event.target.style.animation = 'shake 0.3s';
-        setTimeout(() => event.target.style.animation = '', 300);
+        if (evt && evt.target) {
+            evt.target.style.animation = 'shake 0.3s';
+            setTimeout(() => evt.target.style.animation = '', 300);
+        }
     }
 }
 
@@ -269,11 +271,11 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'q': addScore('home', 1); break;
             case 'w': addScore('home', 2); break;
             case 'e': addScore('home', 3); break;
-            case 'r': krump('home'); break;
+            case 'r': krump('home', e); break;
             case 'u': addScore('guest', 1); break;
             case 'i': addScore('guest', 2); break;
             case 'o': addScore('guest', 3); break;
-            case 'p': krump('guest'); break;
+            case 'p': krump('guest', e); break;
             case 'n': resetGame(); break;
         }
     });
