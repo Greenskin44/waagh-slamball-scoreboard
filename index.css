@@ -8,7 +8,7 @@
 
 body {
     background-color: #1a2e0d;
-    background-image: url('/images/waagh-slamball.jpg');
+    background-image: url('./images/waagh-slamball.jpg');
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -60,10 +60,13 @@ body::before {
 .container {
     display: flex;
     gap: 80px;
-    width: 85px;
+    width: fit-content;
+    max-width: 90vw;
     justify-content: center;
     align-items: center;
     align-content: center;
+    position: relative;
+    z-index: 10;
 }
 
 .column {

@@ -17,11 +17,11 @@
                 <div class="score" id="home-score">0</div>
             </div>
             <div class="button-group">
-                <button onclick="addScore('home', 1)">+1</button>
-                <button onclick="addScore('home', 2)">+2</button>
-                <button onclick="addScore('home', 3)">+3</button>
+                <button onclick="addScore('home', 1, event)">+1</button>
+                <button onclick="addScore('home', 2, event)">+2</button>
+                <button onclick="addScore('home', 3, event)">+3</button>
             </div>
-            <button class="special-button" onclick="krump('home')">KRUMP 'EM!</button>
+            <button class="special-button" onclick="krump('home', event)">KRUMP 'EM!</button>
             <div class="waaagh-meter">
                 <div class="waaagh-fill" id="home-waaagh"></div>
             </div>
@@ -35,11 +35,11 @@
                 <div class="score" id="guest-score">0</div>
             </div>
             <div class="button-group">
-                <button onclick="addScore('guest', 1)">+1</button>
-                <button onclick="addScore('guest', 2)">+2</button>
-                <button onclick="addScore('guest', 3)">+3</button>
+                <button onclick="addScore('guest', 1, event)">+1</button>
+                <button onclick="addScore('guest', 2, event)">+2</button>
+                <button onclick="addScore('guest', 3, event)">+3</button>
             </div>
-            <button class="special-button" onclick="krump('guest')">KRUMP 'EM!</button>
+            <button class="special-button" onclick="krump('guest', event)">KRUMP 'EM!</button>
             <div class="waaagh-meter">
                 <div class="waaagh-fill" id="guest-waaagh"></div>
             </div>

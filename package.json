@@ -1,6 +1,7 @@
 {
-  "name": "Scrim-s04k019",
-  "description": "https://scrimba.com/fullstack-path-c0fullstack/~05h/s0d1lcrfoo/head",
+  "name": "waagh-slamball-scoreboard",
+  "version": "1.0.0",
+  "description": "WAAAGH! Slamball Scoreboard - An Ork-themed basketball scoring application",
   "scripts": {
     "start": "vite",
     "dev": "vite",
@@ -10,5 +11,8 @@
   "dependencies": {
     "vite": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "keywords": ["basketball", "scoreboard", "warhammer", "ork", "sports"],
+  "author": "Greenskin44",
+  "license": "MIT"
 }

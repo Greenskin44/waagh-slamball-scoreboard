@@ -56,34 +56,63 @@ const milestones = {
 };
 
 // Main scoring function
-function addScore(team, points) {
+function addScore(team, points, eventObj = null) {
+    // Input validation
+    if (!team || (team !== 'home' && team !== 'guest')) {
+        console.error('Invalid team specified:', team);
+        return;
+    }
+    
+    if (typeof points !== 'number' || points < 0 || points > 10) {
+        console.error('Invalid points value:', points);
+        return;
+    }
+    
+    // Check if required DOM elements exist
+    const scoreEl = document.getElementById(`${team}-score`);
+    const waaaghEl = document.getElementById(`${team}-waaagh`);
+    const phraseEl = document.getElementById(`${team}-text`);
+    
+    if (!scoreEl || !waaaghEl || !phraseEl) {
+        console.error('Required DOM elements not found for team:', team);
+        return;
+    }
+    
     // Update scores
     scores[team] += points;
     stats[team].teef += points;
     
+    // Prevent score overflow
+    if (scores[team] > 999) {
+        scores[team] = 999;
+        stats[team].teef = Math.min(stats[team].teef, 999);
+    }
+    
     // Update display with flash effect
-    const scoreEl = document.getElementById(`${team}-score`);
     scoreEl.textContent = scores[team];
     scoreEl.classList.add('flash');
     setTimeout(() => scoreEl.classList.remove('flash'), 500);
     
     // Update WAAAGH meter
     waaaghLevels[team] = Math.min(100, waaaghLevels[team] + (points * 5));
-    document.getElementById(`${team}-waaagh`).style.width = waaaghLevels[team] + '%';
+    waaaghEl.style.width = waaaghLevels[team] + '%';
     
     // Show random Ork phrase
-    const phraseEl = document.getElementById(`${team}-text`);
     phraseEl.textContent = orkPhrases[Math.floor(Math.random() * orkPhrases.length)];
-    setTimeout(() => phraseEl.textContent = '', 6000); // Increased from 3000ms to 6000ms
+    setTimeout(() => phraseEl.textContent = '', 6000);
+    
+    // Get coordinates for effects (fallback to center if no event)
+    const x = eventObj?.clientX || window.innerWidth / 2;
+    const y = eventObj?.clientY || window.innerHeight / 2;
     
     // Check for milestones
     if (milestones[scores[team]]) {
-        createExplosion(event.clientX, event.clientY, milestones[scores[team]]);
+        createExplosion(x, y, milestones[scores[team]]);
     }
     
     // Create dakka effects
     for (let i = 0; i < points; i++) {
-        setTimeout(() => createDakka(event.clientX, event.clientY), i * 100);
+        setTimeout(() => createDakka(x, y), i * 100);
     }
     
     // Update stats display
@@ -96,7 +125,7 @@ function addScore(team, points) {
 }
 
 // KRUMP special ability
-function krump(team, evt) {
+function krump(team, eventObj = null) {
     if (waaaghLevels[team] >= 50) {
         // Calculate bonus points
         const bonusPoints = Math.floor(Math.random() * 6) + 5;
@@ -143,12 +172,12 @@ function krump(team, evt) {
         const phraseEl = document.getElementById(`${team}-text`);
         const needed = 50 - waaaghLevels[team];
         phraseEl.textContent = `NEED ${needed}% MORE WAAAGH!`;
-        setTimeout(() => phraseEl.textContent = '', 4000); // Increased from 2000ms to 4000ms
+        setTimeout(() => phraseEl.textContent = '', 4000);
         
         // Shake the krump button to show it's not ready
-        if (evt && evt.target) {
-            evt.target.style.animation = 'shake 0.3s';
-            setTimeout(() => evt.target.style.animation = '', 300);
+        if (eventObj && eventObj.target) {
+            eventObj.target.style.animation = 'shake 0.3s';
+            setTimeout(() => eventObj.target.style.animation = '', 300);
         }
     }
 }
@@ -268,14 +297,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Optional: Add keyboard shortcuts
     document.addEventListener('keypress', function(e) {
         switch(e.key.toLowerCase()) {
-            case 'q': addScore('home', 1); break;
-            case 'w': addScore('home', 2); break;
-            case 'e': addScore('home', 3); break;
-            case 'r': krump('home', e); break;
-            case 'u': addScore('guest', 1); break;
-            case 'i': addScore('guest', 2); break;
-            case 'o': addScore('guest', 3); break;
-            case 'p': krump('guest', e); break;
+            case 'q': addScore('home', 1, null); break;
+            case 'w': addScore('home', 2, null); break;
+            case 'e': addScore('home', 3, null); break;
+            case 'r': krump('home', null); break;
+            case 'u': addScore('guest', 1, null); break;
+            case 'i': addScore('guest', 2, null); break;
+            case 'o': addScore('guest', 3, null); break;
+            case 'p': krump('guest', null); break;
             case 'n': resetGame(); break;
         }
     });
